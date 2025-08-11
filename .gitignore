@@ -1,0 +1,9 @@
+*.sql
+*.js
+*.cjs
+*.md
+*.mjs
+dist
+docs
+scripts
+node_modules

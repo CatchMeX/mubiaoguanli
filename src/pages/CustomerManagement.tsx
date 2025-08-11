@@ -1,0 +1,665 @@
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { DeleteButton } from '@/components/ui/delete-confirm-dialog';
+import {
+  Plus,
+  Search,
+  Edit,
+  Eye,
+  Save,
+  X,
+} from 'lucide-react';
+import { customerAPI } from '@/services/api';
+import { toast } from '@/hooks/use-toast';
+
+// 客户类型定义
+interface Customer {
+  id: string;
+  name: string;
+  code?: string;
+  contact: string;
+  phone: string;
+  residenceAddress?: string;
+  status: 'pending' | 'cooperating' | 'uncooperative';
+  description?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+const CustomerManagement = () => {
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+
+  // 表单状态
+  const [addForm, setAddForm] = useState({
+    name: '',
+    code: '',
+    contact: '',
+    phone: '',
+    residenceAddress: '',
+    status: 'pending' as 'pending' | 'cooperating' | 'uncooperative',
+    description: ''
+  });
+
+  const [editForm, setEditForm] = useState({
+    name: '',
+    code: '',
+    contact: '',
+    phone: '',
+    residenceAddress: '',
+    status: 'pending' as 'pending' | 'cooperating' | 'uncooperative',
+    description: ''
+  });
+
+  // 加载数据
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await customerAPI.getAll();
+      setCustomers(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '加载数据失败');
+      console.error('加载客户数据失败:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 筛选客户
+  const filteredCustomers = customers.filter(customer => {
+    const matchesSearch = customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (customer.code || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         customer.contact.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === 'all' || customer.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'pending':
+        return <Badge className="bg-yellow-600 text-white">待合作</Badge>;
+      case 'cooperating':
+        return <Badge className="bg-green-600 text-white">合作中</Badge>;
+      case 'uncooperative':
+        return <Badge variant="destructive">无法合作</Badge>;
+      default:
+        return <Badge variant="outline">未知</Badge>;
+    }
+  };
+
+  // 处理添加客户
+  const handleAddCustomer = async () => {
+    if (!addForm.name || !addForm.contact || !addForm.phone) {
+      toast({
+        title: "验证失败",
+        description: "请填写所有必填字段",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      await customerAPI.create({
+        name: addForm.name,
+        code: addForm.code || undefined,
+        contact: addForm.contact,
+        phone: addForm.phone,
+        residence_address: addForm.residenceAddress || undefined,
+        status: addForm.status,
+        description: addForm.description || undefined
+      });
+      
+      await loadData();
+      setIsAddDialogOpen(false);
+      toast({
+        title: "添加成功",
+        description: `客户 "${addForm.name}" 已成功添加`,
+        variant: "default",
+      });
+      
+      // 重置表单
+      setAddForm({
+        name: '',
+        code: '',
+        contact: '',
+        phone: '',
+        residenceAddress: '',
+        status: 'pending',
+        description: ''
+      });
+    } catch (err) {
+      console.error('添加客户失败:', err);
+      toast({
+        title: "添加失败",
+        description: err instanceof Error ? err.message : '未知错误',
+        variant: "destructive",
+      });
+    }
+  };
+
+  // 处理编辑客户
+  const handleEditCustomer = async () => {
+    if (!selectedCustomer) return;
+
+    if (!editForm.name || !editForm.contact || !editForm.phone) {
+      toast({
+        title: "验证失败",
+        description: "请填写所有必填字段",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      await customerAPI.update(selectedCustomer.id, {
+        name: editForm.name,
+        code: editForm.code || undefined,
+        contact: editForm.contact,
+        phone: editForm.phone,
+        residence_address: editForm.residenceAddress || undefined,
+        status: editForm.status,
+        description: editForm.description || undefined
+      });
+      
+      await loadData();
+      setIsEditDialogOpen(false);
+      setSelectedCustomer(null);
+      toast({
+        title: "更新成功",
+        description: `客户 "${editForm.name}" 的信息已成功更新`,
+        variant: "default",
+      });
+    } catch (err) {
+      console.error('更新客户失败:', err);
+      toast({
+        title: "更新失败",
+        description: err instanceof Error ? err.message : '未知错误',
+        variant: "destructive",
+      });
+    }
+  };
+
+  // 删除客户
+  const handleDeleteCustomer = async (customer: Customer) => {
+    try {
+      await customerAPI.delete(customer.id);
+      await loadData();
+      toast({
+        title: "删除成功",
+        description: `客户 "${customer.name}" 已成功删除`,
+        variant: "default",
+      });
+    } catch (err) {
+      console.error('删除客户失败:', err);
+      toast({
+        title: "删除失败",
+        description: err instanceof Error ? err.message : '未知错误',
+        variant: "destructive",
+      });
+    }
+  };
+
+  // 打开编辑对话框
+  const openEditDialog = (customer: Customer) => {
+    setSelectedCustomer(customer);
+    setEditForm({
+      name: customer.name,
+      code: customer.code || '',
+      contact: customer.contact,
+      phone: customer.phone,
+      residenceAddress: customer.residenceAddress || '',
+      status: customer.status,
+      description: customer.description || ''
+    });
+    setIsEditDialogOpen(true);
+  };
+
+  // 打开查看对话框
+  const openViewDialog = (customer: Customer) => {
+    setSelectedCustomer(customer);
+    setIsViewDialogOpen(true);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background theme-transition flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-2 text-muted-foreground">加载中...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background theme-transition flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-destructive">加载失败: {error}</p>
+          <Button onClick={loadData} className="mt-2">重试</Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-background theme-transition">
+      <div className="space-y-6">
+        {/* 页面标题 */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">客户管理</h1>
+            <p className="text-muted-foreground">管理客户信息和资料</p>
+          </div>
+          <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Plus className="mr-2 h-4 w-4" />
+                新增客户
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle>新增客户</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="addName">
+                      客户名称 <span className="text-red-500">*</span>
+                    </Label>
+                    <Input 
+                      id="addName" 
+                      value={addForm.name}
+                      onChange={(e) => setAddForm(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="请输入客户名称"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="addCode">客户编码</Label>
+                    <Input 
+                      id="addCode" 
+                      value={addForm.code}
+                      onChange={(e) => setAddForm(prev => ({ ...prev, code: e.target.value }))}
+                      placeholder="请输入客户编码"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="addContact">
+                      联系人 <span className="text-red-500">*</span>
+                    </Label>
+                    <Input 
+                      id="addContact" 
+                      value={addForm.contact}
+                      onChange={(e) => setAddForm(prev => ({ ...prev, contact: e.target.value }))}
+                      placeholder="请输入联系人姓名"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="addPhone">
+                      联系电话 <span className="text-red-500">*</span>
+                    </Label>
+                    <Input 
+                      id="addPhone" 
+                      value={addForm.phone}
+                      onChange={(e) => setAddForm(prev => ({ ...prev, phone: e.target.value }))}
+                      placeholder="请输入联系电话"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="addResidenceAddress">住址</Label>
+                    <Input 
+                      id="addResidenceAddress" 
+                      value={addForm.residenceAddress}
+                      onChange={(e) => setAddForm(prev => ({ ...prev, residenceAddress: e.target.value }))}
+                      placeholder="请输入住址"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="addStatus">
+                      客户状态 <span className="text-red-500">*</span>
+                    </Label>
+                    <Select value={addForm.status} onValueChange={(value: 'pending' | 'cooperating' | 'uncooperative') => setAddForm(prev => ({ ...prev, status: value }))}>
+                      <SelectTrigger className="bg-background border-border text-foreground">
+                                <SelectValue placeholder="请选择客户状态" />
+                              </SelectTrigger>
+                      <SelectContent className="bg-popover border-border">
+                        <SelectItem value="pending">待合作</SelectItem>
+                        <SelectItem value="cooperating">合作中</SelectItem>
+                        <SelectItem value="uncooperative">无法合作</SelectItem>
+                            </SelectContent>
+                          </Select>
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="addDescription">描述</Label>
+                  <Textarea 
+                    id="addDescription" 
+                    value={addForm.description}
+                    onChange={(e) => setAddForm(prev => ({ ...prev, description: e.target.value }))}
+                    placeholder="请输入客户描述"
+                    className="bg-background border-border text-foreground" 
+                    rows={3}
+                  />
+                </div>
+                <div className="flex justify-end space-x-2">
+                  <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                      <X className="mr-2 h-4 w-4" />
+                      取消
+                    </Button>
+                  <Button 
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                    onClick={handleAddCustomer}
+                  >
+                      <Save className="mr-2 h-4 w-4" />
+                    添加
+                    </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+
+        {/* 客户列表 */}
+        <Card className="bg-card border-border theme-transition">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-foreground">客户列表</CardTitle>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="relative flex-1 max-w-sm">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  placeholder="搜索客户..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 bg-background border-border text-foreground"
+                />
+              </div>
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-32 bg-background border-border text-foreground">
+                  <SelectValue placeholder="状态" />
+                </SelectTrigger>
+                <SelectContent className="bg-popover border-border">
+                  <SelectItem value="all">全部状态</SelectItem>
+                  <SelectItem value="pending">待合作</SelectItem>
+                  <SelectItem value="cooperating">合作中</SelectItem>
+                  <SelectItem value="uncooperative">无法合作</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>客户名称</TableHead>
+                  <TableHead>客户编码</TableHead>
+                  <TableHead>联系人</TableHead>
+                  <TableHead>联系电话</TableHead>
+                  <TableHead>住址</TableHead>
+                  <TableHead>状态</TableHead>
+                  <TableHead>操作</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredCustomers.map((customer) => (
+                  <TableRow key={customer.id}>
+                    <TableCell className="font-medium">{customer.name}</TableCell>
+                    <TableCell>{customer.code || '-'}</TableCell>
+                    <TableCell>{customer.contact}</TableCell>
+                    <TableCell>{customer.phone}</TableCell>
+                    <TableCell>{customer.residenceAddress || '-'}</TableCell>
+                    <TableCell>{getStatusBadge(customer.status)}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center space-x-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => openViewDialog(customer)}
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => openEditDialog(customer)}
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <DeleteButton
+                          onConfirm={() => handleDeleteCustomer(customer)}
+                          title="删除客户"
+                          description={`确定要删除客户 "${customer.name}" 吗？此操作不可撤销。`}
+                        />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+
+        {/* 编辑客户对话框 */}
+        <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>编辑客户信息</DialogTitle>
+            </DialogHeader>
+            {selectedCustomer && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="editName">
+                      客户名称 <span className="text-red-500">*</span>
+                    </Label>
+                    <Input 
+                      id="editName" 
+                      value={editForm.name}
+                      onChange={(e) => setEditForm(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="请输入客户名称"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="editCode">客户编码</Label>
+                    <Input 
+                      id="editCode" 
+                      value={editForm.code}
+                      onChange={(e) => setEditForm(prev => ({ ...prev, code: e.target.value }))}
+                      placeholder="请输入客户编码"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="editContact">
+                      联系人 <span className="text-red-500">*</span>
+                    </Label>
+                    <Input 
+                      id="editContact" 
+                      value={editForm.contact}
+                      onChange={(e) => setEditForm(prev => ({ ...prev, contact: e.target.value }))}
+                      placeholder="请输入联系人姓名"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="editPhone">
+                      联系电话 <span className="text-red-500">*</span>
+                    </Label>
+                    <Input 
+                      id="editPhone" 
+                      value={editForm.phone}
+                      onChange={(e) => setEditForm(prev => ({ ...prev, phone: e.target.value }))}
+                      placeholder="请输入联系电话"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="editResidenceAddress">住址</Label>
+                    <Input 
+                      id="editResidenceAddress" 
+                      value={editForm.residenceAddress}
+                      onChange={(e) => setEditForm(prev => ({ ...prev, residenceAddress: e.target.value }))}
+                      placeholder="请输入住址"
+                      className="bg-background border-border text-foreground" 
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="editStatus">
+                      客户状态 <span className="text-red-500">*</span>
+                    </Label>
+                    <Select value={editForm.status} onValueChange={(value: 'pending' | 'cooperating' | 'uncooperative') => setEditForm(prev => ({ ...prev, status: value }))}>
+                      <SelectTrigger className="bg-background border-border text-foreground">
+                              <SelectValue placeholder="请选择客户状态" />
+                            </SelectTrigger>
+                      <SelectContent className="bg-popover border-border">
+                        <SelectItem value="pending">待合作</SelectItem>
+                        <SelectItem value="cooperating">合作中</SelectItem>
+                        <SelectItem value="uncooperative">无法合作</SelectItem>
+                          </SelectContent>
+                        </Select>
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="editDescription">描述</Label>
+                  <Textarea 
+                    id="editDescription" 
+                    value={editForm.description}
+                    onChange={(e) => setEditForm(prev => ({ ...prev, description: e.target.value }))}
+                    placeholder="请输入客户描述"
+                    className="bg-background border-border text-foreground" 
+                    rows={3}
+                  />
+                </div>
+                <div className="flex justify-end space-x-2">
+                  <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                    <X className="mr-2 h-4 w-4" />
+                    取消
+                  </Button>
+                  <Button 
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                    onClick={handleEditCustomer}
+                  >
+                    <Save className="mr-2 h-4 w-4" />
+                    保存
+                  </Button>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+
+        {/* 查看客户对话框 */}
+        <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>客户详情</DialogTitle>
+            </DialogHeader>
+            {selectedCustomer && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">客户名称</Label>
+                    <p className="text-foreground">{selectedCustomer.name}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">客户编码</Label>
+                    <p className="text-foreground">{selectedCustomer.code || '-'}</p>
+                  </div>
+                  </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">联系人</Label>
+                    <p className="text-foreground">{selectedCustomer.contact}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">联系电话</Label>
+                    <p className="text-foreground">{selectedCustomer.phone}</p>
+                  </div>
+                  </div>
+                  <div>
+                  <Label className="text-sm font-medium text-muted-foreground">住址</Label>
+                  <p className="text-foreground">{selectedCustomer.residenceAddress || '-'}</p>
+                  </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">客户状态</Label>
+                    <div>{getStatusBadge(selectedCustomer.status)}</div>
+                  </div>
+                  </div>
+                {selectedCustomer.description && (
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">描述</Label>
+                    <p className="text-foreground">{selectedCustomer.description}</p>
+                  </div>
+                )}
+                <div className="flex justify-end">
+                  <Button variant="outline" onClick={() => setIsViewDialogOpen(false)}>
+                    关闭
+                  </Button>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
+  );
+};
+
+export default CustomerManagement;
