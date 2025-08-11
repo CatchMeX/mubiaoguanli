@@ -1,5 +1,7 @@
 *.sql
 *.js
+!tailwind.config.js
+!postcss.config.js
 *.cjs
 *.md
 *.mjs
