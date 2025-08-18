@@ -1,0 +1,2673 @@
+{
+  "total_permissions": 133,
+  "categories": {
+    "MODULE_ACCESS": [
+      {
+        "id": 1,
+        "name": "ORGANIZATION_MANAGEMENT",
+        "description": "组织管理模块访问权限",
+        "category": "MODULE_ACCESS",
+        "page_path": null,
+        "page_title": "组织管理",
+        "parent_menu": "组织管理",
+        "type": "MODULE"
+      },
+      {
+        "id": 7,
+        "name": "GOAL_MANAGEMENT",
+        "description": "目标管理模块访问权限",
+        "category": "MODULE_ACCESS",
+        "page_path": null,
+        "page_title": "目标管理",
+        "parent_menu": "目标管理",
+        "type": "MODULE"
+      },
+      {
+        "id": 13,
+        "name": "APPROVAL_MANAGEMENT",
+        "description": "审批管理模块访问权限",
+        "category": "MODULE_ACCESS",
+        "page_path": null,
+        "page_title": "审批管理",
+        "parent_menu": "审批管理",
+        "type": "MODULE"
+      },
+      {
+        "id": 16,
+        "name": "FINANCE_MANAGEMENT",
+        "description": "财务管理模块访问权限",
+        "category": "MODULE_ACCESS",
+        "page_path": null,
+        "page_title": "财务管理",
+        "parent_menu": "财务管理",
+        "type": "MODULE"
+      }
+    ],
+    "PAGE_ACCESS": [
+      {
+        "id": 2,
+        "name": "DEPARTMENT_MANAGEMENT",
+        "description": "部门管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/departments",
+        "page_title": "部门管理",
+        "parent_menu": "组织管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 3,
+        "name": "PROJECT_MANAGEMENT",
+        "description": "项目管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 4,
+        "name": "PERMISSION_MANAGEMENT",
+        "description": "权限管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/permissions",
+        "page_title": "权限管理",
+        "parent_menu": "组织管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 5,
+        "name": "MEMBER_MANAGEMENT",
+        "description": "成员管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 6,
+        "name": "TASK_MANAGEMENT",
+        "description": "任务管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 8,
+        "name": "COMPANY_YEARLY_GOAL",
+        "description": "目标看板页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/goals/dashboard",
+        "page_title": "目标看板",
+        "parent_menu": "目标管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 9,
+        "name": "COMPANY_YEARLY_GOAL",
+        "description": "公司年度目标页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 10,
+        "name": "TEAM_MONTHLY_GOAL",
+        "description": "部门月度目标页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 11,
+        "name": "PERSONAL_MONTHLY_GOAL",
+        "description": "个人月度目标页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 12,
+        "name": "UNIT_MANAGEMENT",
+        "description": "单位管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/goals/units",
+        "page_title": "单位管理",
+        "parent_menu": "目标管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 14,
+        "name": "WORKFLOW_CONFIG",
+        "description": "流程配置页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 15,
+        "name": "PENDING_LIST",
+        "description": "待办列表页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 17,
+        "name": "MATTER_MANAGEMENT",
+        "description": "事项管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 18,
+        "name": "PAYMENT_MANAGEMENT",
+        "description": "付款/借款管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 19,
+        "name": "EXPENSE_REIMBURSEMENT",
+        "description": "费用报销/冲销管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "PAGE"
+      },
+      {
+        "id": 20,
+        "name": "BUSINESS_TRIP_REIMBURSEMENT",
+        "description": "差旅费报销管理页面访问权限",
+        "category": "PAGE_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "PAGE"
+      }
+    ],
+    "BUTTON_ACCESS": [
+      {
+        "id": 21,
+        "name": "CREATE_DEPARTMENT",
+        "description": "/departments页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/departments",
+        "page_title": "部门管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 22,
+        "name": "IMPORT_DEPARTMENTS",
+        "description": "/departments页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/departments",
+        "page_title": "部门管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 23,
+        "name": "EXPORT_DEPARTMENTS",
+        "description": "/departments页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/departments",
+        "page_title": "部门管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 24,
+        "name": "EDIT_DEPARTMENT",
+        "description": "/departments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/departments",
+        "page_title": "部门管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 25,
+        "name": "DELETE_DEPARTMENT",
+        "description": "/departments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/departments",
+        "page_title": "部门管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 26,
+        "name": "VIEW_DEPARTMENT_DETAILS",
+        "description": "/departments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/departments",
+        "page_title": "部门管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 27,
+        "name": "CREATE_TEAM",
+        "description": "/teams页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 28,
+        "name": "IMPORT_TEAMS",
+        "description": "/teams页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 29,
+        "name": "EXPORT_TEAMS",
+        "description": "/teams页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 30,
+        "name": "EDIT_TEAM",
+        "description": "/teams页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 31,
+        "name": "DELETE_TEAM",
+        "description": "/teams页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 32,
+        "name": "VIEW_TEAM_DETAILS",
+        "description": "/teams页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 33,
+        "name": "MANAGE_TEAM_MEMBERS",
+        "description": "/teams页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/teams",
+        "page_title": "项目管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 34,
+        "name": "CREATE_PERMISSION",
+        "description": "/permissions页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/permissions",
+        "page_title": "权限管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 35,
+        "name": "IMPORT_PERMISSIONS",
+        "description": "/permissions页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/permissions",
+        "page_title": "权限管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 36,
+        "name": "EXPORT_PERMISSIONS",
+        "description": "/permissions页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/permissions",
+        "page_title": "权限管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 37,
+        "name": "EDIT_PERMISSION",
+        "description": "/permissions页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/permissions",
+        "page_title": "权限管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 38,
+        "name": "DELETE_PERMISSION",
+        "description": "/permissions页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/permissions",
+        "page_title": "权限管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 39,
+        "name": "VIEW_PERMISSION_DETAILS",
+        "description": "/permissions页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/permissions",
+        "page_title": "权限管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 40,
+        "name": "CREATE_MEMBER",
+        "description": "/members页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 41,
+        "name": "IMPORT_MEMBERS",
+        "description": "/members页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 42,
+        "name": "EXPORT_MEMBERS",
+        "description": "/members页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 43,
+        "name": "EDIT_MEMBER",
+        "description": "/members页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 44,
+        "name": "DELETE_MEMBER",
+        "description": "/members页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 45,
+        "name": "VIEW_MEMBER_DETAILS",
+        "description": "/members页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 46,
+        "name": "RESET_PASSWORD",
+        "description": "/members页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/members",
+        "page_title": "成员管理",
+        "parent_menu": "组织管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 47,
+        "name": "CREATE_TASK",
+        "description": "/tasks页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 48,
+        "name": "IMPORT_TASKS",
+        "description": "/tasks页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 49,
+        "name": "EXPORT_TASKS",
+        "description": "/tasks页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 50,
+        "name": "BULK_UPDATE_TASKS",
+        "description": "/tasks页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 51,
+        "name": "EDIT_TASK",
+        "description": "/tasks页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 52,
+        "name": "DELETE_TASK",
+        "description": "/tasks页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 53,
+        "name": "VIEW_TASK_DETAILS",
+        "description": "/tasks页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 54,
+        "name": "ASSIGN_TASK",
+        "description": "/tasks页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 55,
+        "name": "COMPLETE_TASK",
+        "description": "/tasks页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/tasks",
+        "page_title": "任务管理",
+        "parent_menu": "任务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 56,
+        "name": "EXPORT_DASHBOARD",
+        "description": "/goals/dashboard页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/dashboard",
+        "page_title": "目标看板",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 57,
+        "name": "PRINT_DASHBOARD",
+        "description": "/goals/dashboard页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/dashboard",
+        "page_title": "目标看板",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 58,
+        "name": "VIEW_GOAL_DETAILS",
+        "description": "/goals/dashboard页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/dashboard",
+        "page_title": "目标看板",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 59,
+        "name": "EDIT_GOAL_FROM_DASHBOARD",
+        "description": "/goals/dashboard页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/dashboard",
+        "page_title": "目标看板",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 60,
+        "name": "CREATE_COMPANY_GOAL",
+        "description": "/goals/company-yearly页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 61,
+        "name": "IMPORT_COMPANY_GOALS",
+        "description": "/goals/company-yearly页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 62,
+        "name": "EXPORT_COMPANY_GOALS",
+        "description": "/goals/company-yearly页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 63,
+        "name": "EDIT_COMPANY_GOAL",
+        "description": "/goals/company-yearly页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 64,
+        "name": "DELETE_COMPANY_GOAL",
+        "description": "/goals/company-yearly页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 65,
+        "name": "VIEW_COMPANY_GOAL_DETAILS",
+        "description": "/goals/company-yearly页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 66,
+        "name": "DUPLICATE_COMPANY_GOAL",
+        "description": "/goals/company-yearly页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/company-yearly",
+        "page_title": "公司年度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 67,
+        "name": "CREATE_TEAM_GOAL",
+        "description": "/goals/team页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 68,
+        "name": "IMPORT_TEAM_GOALS",
+        "description": "/goals/team页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 69,
+        "name": "EXPORT_TEAM_GOALS",
+        "description": "/goals/team页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 70,
+        "name": "EDIT_TEAM_GOAL",
+        "description": "/goals/team页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 71,
+        "name": "DELETE_TEAM_GOAL",
+        "description": "/goals/team页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 72,
+        "name": "VIEW_TEAM_GOAL_DETAILS",
+        "description": "/goals/team页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 73,
+        "name": "DUPLICATE_TEAM_GOAL",
+        "description": "/goals/team页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/team",
+        "page_title": "部门月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 74,
+        "name": "CREATE_PERSONAL_GOAL",
+        "description": "/goals/personal页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 75,
+        "name": "IMPORT_PERSONAL_GOALS",
+        "description": "/goals/personal页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 76,
+        "name": "EXPORT_PERSONAL_GOALS",
+        "description": "/goals/personal页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 77,
+        "name": "EDIT_PERSONAL_GOAL",
+        "description": "/goals/personal页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 78,
+        "name": "DELETE_PERSONAL_GOAL",
+        "description": "/goals/personal页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 79,
+        "name": "VIEW_PERSONAL_GOAL_DETAILS",
+        "description": "/goals/personal页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 80,
+        "name": "DUPLICATE_PERSONAL_GOAL",
+        "description": "/goals/personal页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/personal",
+        "page_title": "个人月度目标",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 81,
+        "name": "CREATE_UNIT",
+        "description": "/goals/units页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/units",
+        "page_title": "单位管理",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 82,
+        "name": "IMPORT_UNITS",
+        "description": "/goals/units页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/units",
+        "page_title": "单位管理",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 83,
+        "name": "EXPORT_UNITS",
+        "description": "/goals/units页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/units",
+        "page_title": "单位管理",
+        "parent_menu": "目标管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 84,
+        "name": "EDIT_UNIT",
+        "description": "/goals/units页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/units",
+        "page_title": "单位管理",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 85,
+        "name": "DELETE_UNIT",
+        "description": "/goals/units页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/units",
+        "page_title": "单位管理",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 86,
+        "name": "VIEW_UNIT_DETAILS",
+        "description": "/goals/units页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/goals/units",
+        "page_title": "单位管理",
+        "parent_menu": "目标管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 87,
+        "name": "CREATE_WORKFLOW",
+        "description": "/approval/workflow页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 88,
+        "name": "IMPORT_WORKFLOWS",
+        "description": "/approval/workflow页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 89,
+        "name": "EXPORT_WORKFLOWS",
+        "description": "/approval/workflow页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 90,
+        "name": "EDIT_WORKFLOW",
+        "description": "/approval/workflow页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 91,
+        "name": "DELETE_WORKFLOW",
+        "description": "/approval/workflow页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 92,
+        "name": "VIEW_WORKFLOW_DETAILS",
+        "description": "/approval/workflow页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 93,
+        "name": "ACTIVATE_WORKFLOW",
+        "description": "/approval/workflow页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 94,
+        "name": "DEACTIVATE_WORKFLOW",
+        "description": "/approval/workflow页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/workflow",
+        "page_title": "流程配置",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 95,
+        "name": "EXPORT_PENDING_LIST",
+        "description": "/approval/pending页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 96,
+        "name": "BULK_APPROVE",
+        "description": "/approval/pending页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 97,
+        "name": "BULK_REJECT",
+        "description": "/approval/pending页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 98,
+        "name": "APPROVE_ITEM",
+        "description": "/approval/pending页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 99,
+        "name": "REJECT_ITEM",
+        "description": "/approval/pending页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 100,
+        "name": "VIEW_ITEM_DETAILS",
+        "description": "/approval/pending页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 101,
+        "name": "ADD_COMMENT",
+        "description": "/approval/pending页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/approval/pending",
+        "page_title": "待办列表",
+        "parent_menu": "审批管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 102,
+        "name": "CREATE_MATTER",
+        "description": "/finance/matters页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 103,
+        "name": "IMPORT_MATTERS",
+        "description": "/finance/matters页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 104,
+        "name": "EXPORT_MATTERS",
+        "description": "/finance/matters页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 105,
+        "name": "EDIT_MATTER",
+        "description": "/finance/matters页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 106,
+        "name": "DELETE_MATTER",
+        "description": "/finance/matters页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 107,
+        "name": "VIEW_MATTER_DETAILS",
+        "description": "/finance/matters页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 108,
+        "name": "APPROVE_MATTER",
+        "description": "/finance/matters页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 109,
+        "name": "REJECT_MATTER",
+        "description": "/finance/matters页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/matters",
+        "page_title": "事项管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 110,
+        "name": "CREATE_PAYMENT",
+        "description": "/finance/payments页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 111,
+        "name": "IMPORT_PAYMENTS",
+        "description": "/finance/payments页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 112,
+        "name": "EXPORT_PAYMENTS",
+        "description": "/finance/payments页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 113,
+        "name": "EDIT_PAYMENT",
+        "description": "/finance/payments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 114,
+        "name": "DELETE_PAYMENT",
+        "description": "/finance/payments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 115,
+        "name": "VIEW_PAYMENT_DETAILS",
+        "description": "/finance/payments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 116,
+        "name": "APPROVE_PAYMENT",
+        "description": "/finance/payments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 117,
+        "name": "REJECT_PAYMENT",
+        "description": "/finance/payments页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/payments",
+        "page_title": "付款/借款管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 118,
+        "name": "CREATE_EXPENSE",
+        "description": "/finance/expense-reimbursement页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 119,
+        "name": "IMPORT_EXPENSES",
+        "description": "/finance/expense-reimbursement页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 120,
+        "name": "EXPORT_EXPENSES",
+        "description": "/finance/expense-reimbursement页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 121,
+        "name": "EDIT_EXPENSE",
+        "description": "/finance/expense-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 122,
+        "name": "DELETE_EXPENSE",
+        "description": "/finance/expense-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 123,
+        "name": "VIEW_EXPENSE_DETAILS",
+        "description": "/finance/expense-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 124,
+        "name": "APPROVE_EXPENSE",
+        "description": "/finance/expense-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 125,
+        "name": "REJECT_EXPENSE",
+        "description": "/finance/expense-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/expense-reimbursement",
+        "page_title": "费用报销/冲销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 126,
+        "name": "CREATE_BUSINESS_TRIP",
+        "description": "/finance/business-trip-reimbursement页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 127,
+        "name": "IMPORT_BUSINESS_TRIPS",
+        "description": "/finance/business-trip-reimbursement页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 128,
+        "name": "EXPORT_BUSINESS_TRIPS",
+        "description": "/finance/business-trip-reimbursement页面全局按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "GLOBAL_BUTTON"
+      },
+      {
+        "id": 129,
+        "name": "EDIT_BUSINESS_TRIP",
+        "description": "/finance/business-trip-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 130,
+        "name": "DELETE_BUSINESS_TRIP",
+        "description": "/finance/business-trip-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 131,
+        "name": "VIEW_BUSINESS_TRIP_DETAILS",
+        "description": "/finance/business-trip-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 132,
+        "name": "APPROVE_BUSINESS_TRIP",
+        "description": "/finance/business-trip-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      },
+      {
+        "id": 133,
+        "name": "REJECT_BUSINESS_TRIP",
+        "description": "/finance/business-trip-reimbursement页面行按钮权限",
+        "category": "BUTTON_ACCESS",
+        "page_path": "/finance/business-trip-reimbursement",
+        "page_title": "差旅费报销管理",
+        "parent_menu": "财务管理",
+        "type": "ROW_BUTTON"
+      }
+    ]
+  },
+  "permissions": [
+    {
+      "id": 1,
+      "name": "ORGANIZATION_MANAGEMENT",
+      "description": "组织管理模块访问权限",
+      "category": "MODULE_ACCESS",
+      "page_path": null,
+      "page_title": "组织管理",
+      "parent_menu": "组织管理",
+      "type": "MODULE"
+    },
+    {
+      "id": 2,
+      "name": "DEPARTMENT_MANAGEMENT",
+      "description": "部门管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/departments",
+      "page_title": "部门管理",
+      "parent_menu": "组织管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 3,
+      "name": "PROJECT_MANAGEMENT",
+      "description": "项目管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 4,
+      "name": "PERMISSION_MANAGEMENT",
+      "description": "权限管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/permissions",
+      "page_title": "权限管理",
+      "parent_menu": "组织管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 5,
+      "name": "MEMBER_MANAGEMENT",
+      "description": "成员管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 6,
+      "name": "TASK_MANAGEMENT",
+      "description": "任务管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 7,
+      "name": "GOAL_MANAGEMENT",
+      "description": "目标管理模块访问权限",
+      "category": "MODULE_ACCESS",
+      "page_path": null,
+      "page_title": "目标管理",
+      "parent_menu": "目标管理",
+      "type": "MODULE"
+    },
+    {
+      "id": 8,
+      "name": "COMPANY_YEARLY_GOAL",
+      "description": "目标看板页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/goals/dashboard",
+      "page_title": "目标看板",
+      "parent_menu": "目标管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 9,
+      "name": "COMPANY_YEARLY_GOAL",
+      "description": "公司年度目标页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 10,
+      "name": "TEAM_MONTHLY_GOAL",
+      "description": "部门月度目标页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 11,
+      "name": "PERSONAL_MONTHLY_GOAL",
+      "description": "个人月度目标页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 12,
+      "name": "UNIT_MANAGEMENT",
+      "description": "单位管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/goals/units",
+      "page_title": "单位管理",
+      "parent_menu": "目标管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 13,
+      "name": "APPROVAL_MANAGEMENT",
+      "description": "审批管理模块访问权限",
+      "category": "MODULE_ACCESS",
+      "page_path": null,
+      "page_title": "审批管理",
+      "parent_menu": "审批管理",
+      "type": "MODULE"
+    },
+    {
+      "id": 14,
+      "name": "WORKFLOW_CONFIG",
+      "description": "流程配置页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 15,
+      "name": "PENDING_LIST",
+      "description": "待办列表页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 16,
+      "name": "FINANCE_MANAGEMENT",
+      "description": "财务管理模块访问权限",
+      "category": "MODULE_ACCESS",
+      "page_path": null,
+      "page_title": "财务管理",
+      "parent_menu": "财务管理",
+      "type": "MODULE"
+    },
+    {
+      "id": 17,
+      "name": "MATTER_MANAGEMENT",
+      "description": "事项管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 18,
+      "name": "PAYMENT_MANAGEMENT",
+      "description": "付款/借款管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 19,
+      "name": "EXPENSE_REIMBURSEMENT",
+      "description": "费用报销/冲销管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 20,
+      "name": "BUSINESS_TRIP_REIMBURSEMENT",
+      "description": "差旅费报销管理页面访问权限",
+      "category": "PAGE_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "PAGE"
+    },
+    {
+      "id": 21,
+      "name": "CREATE_DEPARTMENT",
+      "description": "/departments页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/departments",
+      "page_title": "部门管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 22,
+      "name": "IMPORT_DEPARTMENTS",
+      "description": "/departments页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/departments",
+      "page_title": "部门管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 23,
+      "name": "EXPORT_DEPARTMENTS",
+      "description": "/departments页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/departments",
+      "page_title": "部门管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 24,
+      "name": "EDIT_DEPARTMENT",
+      "description": "/departments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/departments",
+      "page_title": "部门管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 25,
+      "name": "DELETE_DEPARTMENT",
+      "description": "/departments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/departments",
+      "page_title": "部门管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 26,
+      "name": "VIEW_DEPARTMENT_DETAILS",
+      "description": "/departments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/departments",
+      "page_title": "部门管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 27,
+      "name": "CREATE_TEAM",
+      "description": "/teams页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 28,
+      "name": "IMPORT_TEAMS",
+      "description": "/teams页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 29,
+      "name": "EXPORT_TEAMS",
+      "description": "/teams页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 30,
+      "name": "EDIT_TEAM",
+      "description": "/teams页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 31,
+      "name": "DELETE_TEAM",
+      "description": "/teams页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 32,
+      "name": "VIEW_TEAM_DETAILS",
+      "description": "/teams页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 33,
+      "name": "MANAGE_TEAM_MEMBERS",
+      "description": "/teams页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/teams",
+      "page_title": "项目管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 34,
+      "name": "CREATE_PERMISSION",
+      "description": "/permissions页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/permissions",
+      "page_title": "权限管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 35,
+      "name": "IMPORT_PERMISSIONS",
+      "description": "/permissions页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/permissions",
+      "page_title": "权限管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 36,
+      "name": "EXPORT_PERMISSIONS",
+      "description": "/permissions页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/permissions",
+      "page_title": "权限管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 37,
+      "name": "EDIT_PERMISSION",
+      "description": "/permissions页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/permissions",
+      "page_title": "权限管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 38,
+      "name": "DELETE_PERMISSION",
+      "description": "/permissions页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/permissions",
+      "page_title": "权限管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 39,
+      "name": "VIEW_PERMISSION_DETAILS",
+      "description": "/permissions页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/permissions",
+      "page_title": "权限管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 40,
+      "name": "CREATE_MEMBER",
+      "description": "/members页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 41,
+      "name": "IMPORT_MEMBERS",
+      "description": "/members页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 42,
+      "name": "EXPORT_MEMBERS",
+      "description": "/members页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 43,
+      "name": "EDIT_MEMBER",
+      "description": "/members页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 44,
+      "name": "DELETE_MEMBER",
+      "description": "/members页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 45,
+      "name": "VIEW_MEMBER_DETAILS",
+      "description": "/members页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 46,
+      "name": "RESET_PASSWORD",
+      "description": "/members页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/members",
+      "page_title": "成员管理",
+      "parent_menu": "组织管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 47,
+      "name": "CREATE_TASK",
+      "description": "/tasks页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 48,
+      "name": "IMPORT_TASKS",
+      "description": "/tasks页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 49,
+      "name": "EXPORT_TASKS",
+      "description": "/tasks页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 50,
+      "name": "BULK_UPDATE_TASKS",
+      "description": "/tasks页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 51,
+      "name": "EDIT_TASK",
+      "description": "/tasks页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 52,
+      "name": "DELETE_TASK",
+      "description": "/tasks页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 53,
+      "name": "VIEW_TASK_DETAILS",
+      "description": "/tasks页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 54,
+      "name": "ASSIGN_TASK",
+      "description": "/tasks页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 55,
+      "name": "COMPLETE_TASK",
+      "description": "/tasks页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/tasks",
+      "page_title": "任务管理",
+      "parent_menu": "任务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 56,
+      "name": "EXPORT_DASHBOARD",
+      "description": "/goals/dashboard页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/dashboard",
+      "page_title": "目标看板",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 57,
+      "name": "PRINT_DASHBOARD",
+      "description": "/goals/dashboard页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/dashboard",
+      "page_title": "目标看板",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 58,
+      "name": "VIEW_GOAL_DETAILS",
+      "description": "/goals/dashboard页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/dashboard",
+      "page_title": "目标看板",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 59,
+      "name": "EDIT_GOAL_FROM_DASHBOARD",
+      "description": "/goals/dashboard页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/dashboard",
+      "page_title": "目标看板",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 60,
+      "name": "CREATE_COMPANY_GOAL",
+      "description": "/goals/company-yearly页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 61,
+      "name": "IMPORT_COMPANY_GOALS",
+      "description": "/goals/company-yearly页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 62,
+      "name": "EXPORT_COMPANY_GOALS",
+      "description": "/goals/company-yearly页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 63,
+      "name": "EDIT_COMPANY_GOAL",
+      "description": "/goals/company-yearly页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 64,
+      "name": "DELETE_COMPANY_GOAL",
+      "description": "/goals/company-yearly页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 65,
+      "name": "VIEW_COMPANY_GOAL_DETAILS",
+      "description": "/goals/company-yearly页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 66,
+      "name": "DUPLICATE_COMPANY_GOAL",
+      "description": "/goals/company-yearly页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/company-yearly",
+      "page_title": "公司年度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 67,
+      "name": "CREATE_TEAM_GOAL",
+      "description": "/goals/team页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 68,
+      "name": "IMPORT_TEAM_GOALS",
+      "description": "/goals/team页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 69,
+      "name": "EXPORT_TEAM_GOALS",
+      "description": "/goals/team页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 70,
+      "name": "EDIT_TEAM_GOAL",
+      "description": "/goals/team页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 71,
+      "name": "DELETE_TEAM_GOAL",
+      "description": "/goals/team页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 72,
+      "name": "VIEW_TEAM_GOAL_DETAILS",
+      "description": "/goals/team页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 73,
+      "name": "DUPLICATE_TEAM_GOAL",
+      "description": "/goals/team页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/team",
+      "page_title": "部门月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 74,
+      "name": "CREATE_PERSONAL_GOAL",
+      "description": "/goals/personal页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 75,
+      "name": "IMPORT_PERSONAL_GOALS",
+      "description": "/goals/personal页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 76,
+      "name": "EXPORT_PERSONAL_GOALS",
+      "description": "/goals/personal页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 77,
+      "name": "EDIT_PERSONAL_GOAL",
+      "description": "/goals/personal页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 78,
+      "name": "DELETE_PERSONAL_GOAL",
+      "description": "/goals/personal页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 79,
+      "name": "VIEW_PERSONAL_GOAL_DETAILS",
+      "description": "/goals/personal页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 80,
+      "name": "DUPLICATE_PERSONAL_GOAL",
+      "description": "/goals/personal页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/personal",
+      "page_title": "个人月度目标",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 81,
+      "name": "CREATE_UNIT",
+      "description": "/goals/units页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/units",
+      "page_title": "单位管理",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 82,
+      "name": "IMPORT_UNITS",
+      "description": "/goals/units页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/units",
+      "page_title": "单位管理",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 83,
+      "name": "EXPORT_UNITS",
+      "description": "/goals/units页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/units",
+      "page_title": "单位管理",
+      "parent_menu": "目标管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 84,
+      "name": "EDIT_UNIT",
+      "description": "/goals/units页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/units",
+      "page_title": "单位管理",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 85,
+      "name": "DELETE_UNIT",
+      "description": "/goals/units页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/units",
+      "page_title": "单位管理",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 86,
+      "name": "VIEW_UNIT_DETAILS",
+      "description": "/goals/units页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/goals/units",
+      "page_title": "单位管理",
+      "parent_menu": "目标管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 87,
+      "name": "CREATE_WORKFLOW",
+      "description": "/approval/workflow页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 88,
+      "name": "IMPORT_WORKFLOWS",
+      "description": "/approval/workflow页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 89,
+      "name": "EXPORT_WORKFLOWS",
+      "description": "/approval/workflow页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 90,
+      "name": "EDIT_WORKFLOW",
+      "description": "/approval/workflow页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 91,
+      "name": "DELETE_WORKFLOW",
+      "description": "/approval/workflow页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 92,
+      "name": "VIEW_WORKFLOW_DETAILS",
+      "description": "/approval/workflow页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 93,
+      "name": "ACTIVATE_WORKFLOW",
+      "description": "/approval/workflow页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 94,
+      "name": "DEACTIVATE_WORKFLOW",
+      "description": "/approval/workflow页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/workflow",
+      "page_title": "流程配置",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 95,
+      "name": "EXPORT_PENDING_LIST",
+      "description": "/approval/pending页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 96,
+      "name": "BULK_APPROVE",
+      "description": "/approval/pending页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 97,
+      "name": "BULK_REJECT",
+      "description": "/approval/pending页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 98,
+      "name": "APPROVE_ITEM",
+      "description": "/approval/pending页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 99,
+      "name": "REJECT_ITEM",
+      "description": "/approval/pending页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 100,
+      "name": "VIEW_ITEM_DETAILS",
+      "description": "/approval/pending页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 101,
+      "name": "ADD_COMMENT",
+      "description": "/approval/pending页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/approval/pending",
+      "page_title": "待办列表",
+      "parent_menu": "审批管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 102,
+      "name": "CREATE_MATTER",
+      "description": "/finance/matters页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 103,
+      "name": "IMPORT_MATTERS",
+      "description": "/finance/matters页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 104,
+      "name": "EXPORT_MATTERS",
+      "description": "/finance/matters页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 105,
+      "name": "EDIT_MATTER",
+      "description": "/finance/matters页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 106,
+      "name": "DELETE_MATTER",
+      "description": "/finance/matters页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 107,
+      "name": "VIEW_MATTER_DETAILS",
+      "description": "/finance/matters页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 108,
+      "name": "APPROVE_MATTER",
+      "description": "/finance/matters页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 109,
+      "name": "REJECT_MATTER",
+      "description": "/finance/matters页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/matters",
+      "page_title": "事项管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 110,
+      "name": "CREATE_PAYMENT",
+      "description": "/finance/payments页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 111,
+      "name": "IMPORT_PAYMENTS",
+      "description": "/finance/payments页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 112,
+      "name": "EXPORT_PAYMENTS",
+      "description": "/finance/payments页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 113,
+      "name": "EDIT_PAYMENT",
+      "description": "/finance/payments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 114,
+      "name": "DELETE_PAYMENT",
+      "description": "/finance/payments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 115,
+      "name": "VIEW_PAYMENT_DETAILS",
+      "description": "/finance/payments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 116,
+      "name": "APPROVE_PAYMENT",
+      "description": "/finance/payments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 117,
+      "name": "REJECT_PAYMENT",
+      "description": "/finance/payments页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/payments",
+      "page_title": "付款/借款管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 118,
+      "name": "CREATE_EXPENSE",
+      "description": "/finance/expense-reimbursement页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 119,
+      "name": "IMPORT_EXPENSES",
+      "description": "/finance/expense-reimbursement页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 120,
+      "name": "EXPORT_EXPENSES",
+      "description": "/finance/expense-reimbursement页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 121,
+      "name": "EDIT_EXPENSE",
+      "description": "/finance/expense-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 122,
+      "name": "DELETE_EXPENSE",
+      "description": "/finance/expense-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 123,
+      "name": "VIEW_EXPENSE_DETAILS",
+      "description": "/finance/expense-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 124,
+      "name": "APPROVE_EXPENSE",
+      "description": "/finance/expense-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 125,
+      "name": "REJECT_EXPENSE",
+      "description": "/finance/expense-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/expense-reimbursement",
+      "page_title": "费用报销/冲销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 126,
+      "name": "CREATE_BUSINESS_TRIP",
+      "description": "/finance/business-trip-reimbursement页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 127,
+      "name": "IMPORT_BUSINESS_TRIPS",
+      "description": "/finance/business-trip-reimbursement页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 128,
+      "name": "EXPORT_BUSINESS_TRIPS",
+      "description": "/finance/business-trip-reimbursement页面全局按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "GLOBAL_BUTTON"
+    },
+    {
+      "id": 129,
+      "name": "EDIT_BUSINESS_TRIP",
+      "description": "/finance/business-trip-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 130,
+      "name": "DELETE_BUSINESS_TRIP",
+      "description": "/finance/business-trip-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 131,
+      "name": "VIEW_BUSINESS_TRIP_DETAILS",
+      "description": "/finance/business-trip-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 132,
+      "name": "APPROVE_BUSINESS_TRIP",
+      "description": "/finance/business-trip-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    },
+    {
+      "id": 133,
+      "name": "REJECT_BUSINESS_TRIP",
+      "description": "/finance/business-trip-reimbursement页面行按钮权限",
+      "category": "BUTTON_ACCESS",
+      "page_path": "/finance/business-trip-reimbursement",
+      "page_title": "差旅费报销管理",
+      "parent_menu": "财务管理",
+      "type": "ROW_BUTTON"
+    }
+  ]
+}

@@ -1,0 +1,967 @@
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { DeleteButton } from '@/components/ui/delete-confirm-dialog';
+import {
+  Plus,
+  Search,
+  Filter,
+  Download,
+  Eye,
+  Edit,
+  Users,
+  Building2,
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
+  DollarSign,
+  Save,
+  X,
+} from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { customerAPI } from '@/services/api';
+import { Customer } from '@/types/revenue';
+
+// 表单验证模式
+const customerFormSchema = z.object({
+  name: z.string().min(1, '客户名称不能为空'),
+  code: z.string().min(1, '客户编码不能为空'),
+  industry: z.string().optional(),
+  contact: z.string().min(1, '联系人不能为空'),
+  phone: z.string().min(1, '联系电话不能为空'),
+  email: z.string().email('请输入有效的邮箱地址').optional(),
+  address: z.string().optional(),
+  residenceAddress: z.string().optional(),
+  status: z.enum(['active', 'inactive']),
+  registrationDate: z.string().min(1, '请选择注册日期'),
+  description: z.string().optional(),
+});
+
+type CustomerFormData = z.infer<typeof customerFormSchema>;
+
+const CustomerManagement = () => {
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+
+  // 加载数据
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await customerAPI.getAll();
+      setCustomers(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '加载客户数据失败');
+      console.error('加载客户数据失败:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 表单实例
+  const addForm = useForm<CustomerFormData>({
+    resolver: zodResolver(customerFormSchema),
+    defaultValues: {
+      code: `CUST-${new Date().getFullYear()}-${String(Date.now()).slice(-3)}`,
+      type: 'enterprise',
+      creditLevel: 'B',
+      status: 'active',
+      registrationDate: new Date().toISOString().split('T')[0],
+    },
+  });
+
+  const editForm = useForm<CustomerFormData>({
+    resolver: zodResolver(customerFormSchema),
+  });
+
+  // 筛选客户
+  const filteredCustomers = customers.filter(customer => {
+    const matchesSearch = customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         customer.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         customer.contact.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesType = typeFilter === 'all' || customer.type === typeFilter;
+    const matchesStatus = statusFilter === 'all' || customer.status === statusFilter;
+    
+    return matchesSearch && matchesType && matchesStatus;
+  });
+
+  // 客户类型标签
+  const getTypeLabel = (type: string) => {
+    const labels = {
+      enterprise: '企业',
+      government: '政府',
+      individual: '个人',
+    };
+    return labels[type as keyof typeof labels] || type;
+  };
+
+  // 信用等级标签样式
+  const getCreditLevelBadge = (level: string | undefined) => {
+    if (!level) {
+      return (
+        <Badge className="bg-gray-100 text-gray-800">
+          未评级
+        </Badge>
+      );
+    }
+    
+    const styles = {
+      A: 'bg-green-100 text-green-800',
+      B: 'bg-blue-100 text-blue-800',
+      C: 'bg-yellow-100 text-yellow-800',
+      D: 'bg-red-100 text-red-800',
+    };
+    return (
+      <Badge className={styles[level as keyof typeof styles] || 'bg-gray-100 text-gray-800'}>
+        {level}级
+      </Badge>
+    );
+  };
+
+  // 状态标签样式
+  const getStatusBadge = (status: string) => {
+    const styles = {
+      active: 'bg-green-100 text-green-800',
+      inactive: 'bg-gray-100 text-gray-800',
+    };
+    const labels = {
+      active: '活跃',
+      inactive: '非活跃',
+    };
+    return (
+      <Badge className={styles[status as keyof typeof styles]}>
+        {labels[status as keyof typeof labels]}
+      </Badge>
+    );
+  };
+
+  // 处理新增客户
+  const handleAddCustomer = async (data: CustomerFormData) => {
+    try {
+      await customerAPI.create({
+        name: data.name,
+        code: data.code,
+        industry: data.industry,
+        contact: data.contact,
+        phone: data.phone,
+        email: data.email,
+        address: data.address,
+        residence_address: data.residenceAddress,
+        status: data.status,
+        registration_date: data.registrationDate,
+        description: data.description
+      });
+      
+      await loadData(); // 重新加载数据
+      setIsAddDialogOpen(false);
+      addForm.reset();
+      alert('客户添加成功！');
+    } catch (err) {
+      console.error('添加客户失败:', err);
+      alert('添加客户失败: ' + (err instanceof Error ? err.message : '未知错误'));
+    }
+  };
+
+  // 处理编辑客户
+  const handleEditCustomer = async (data: CustomerFormData) => {
+    if (!selectedCustomer) return;
+
+    try {
+      await customerAPI.update(selectedCustomer.id, {
+        name: data.name,
+        code: data.code,
+        industry: data.industry,
+        contact: data.contact,
+        phone: data.phone,
+        email: data.email,
+        address: data.address,
+        residence_address: data.residenceAddress,
+        status: data.status,
+        registration_date: data.registrationDate,
+        description: data.description
+      });
+      
+      await loadData(); // 重新加载数据
+      setIsEditDialogOpen(false);
+      setSelectedCustomer(null);
+      alert('客户信息更新成功！');
+    } catch (err) {
+      console.error('更新客户失败:', err);
+      alert('更新客户失败: ' + (err instanceof Error ? err.message : '未知错误'));
+    }
+  };
+
+  // 删除客户
+  const handleDeleteCustomer = async (customer: Customer) => {
+    try {
+      await customerAPI.delete(customer.id);
+      await loadData(); // 重新加载数据
+      alert('客户删除成功！');
+    } catch (err) {
+      console.error('删除客户失败:', err);
+      alert('删除客户失败: ' + (err instanceof Error ? err.message : '未知错误'));
+    }
+  };
+
+  // 打开编辑对话框
+  const openEditDialog = (customer: Customer) => {
+    setSelectedCustomer(customer);
+    
+    // 填充表单数据
+    editForm.reset({
+      name: customer.name,
+      code: customer.code,
+      industry: customer.industry,
+      contact: customer.contact,
+      phone: customer.phone,
+      email: customer.email,
+      address: customer.address,
+      residenceAddress: customer.residenceAddress,
+      status: customer.status,
+      registrationDate: customer.registrationDate,
+      description: customer.description,
+    });
+    
+    setIsEditDialogOpen(true);
+  };
+
+  // 打开查看对话框
+  const openViewDialog = (customer: Customer) => {
+    setSelectedCustomer(customer);
+    setIsViewDialogOpen(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-background theme-transition">
+      <div className="space-y-6">
+        {/* 页面标题 */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">客户管理</h1>
+            <p className="text-muted-foreground mt-1">管理客户信息和客户关系</p>
+          </div>
+          <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Plus className="mr-2 h-4 w-4" />
+                新增客户
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>新增客户</DialogTitle>
+              </DialogHeader>
+              <Form {...addForm}>
+                <form onSubmit={addForm.handleSubmit(handleAddCustomer)} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* 客户名称 */}
+                    <FormField
+                      control={addForm.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>客户名称 *</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="请输入客户名称" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 客户编码 */}
+                    <FormField
+                      control={addForm.control}
+                      name="code"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>客户编码 *</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="请输入客户编码" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 客户类型 */}
+                    <FormField
+                      control={addForm.control}
+                      name="type"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>客户类型 *</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="请选择客户类型" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="enterprise">企业</SelectItem>
+                              <SelectItem value="government">政府</SelectItem>
+                              <SelectItem value="individual">个人</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 所属行业 */}
+                    <FormField
+                      control={addForm.control}
+                      name="industry"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>所属行业</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="请输入所属行业" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 联系人 */}
+                    <FormField
+                      control={addForm.control}
+                      name="contact"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>联系人 *</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="请输入联系人姓名" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 联系电话 */}
+                    <FormField
+                      control={addForm.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>联系电话 *</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="请输入联系电话" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 邮箱地址 */}
+                    <FormField
+                      control={addForm.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>邮箱地址</FormLabel>
+                          <FormControl>
+                            <Input {...field} type="email" placeholder="请输入邮箱地址" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 信用等级 */}
+                    <FormField
+                      control={addForm.control}
+                      name="creditLevel"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>信用等级 *</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="请选择信用等级" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="A">A级（优秀）</SelectItem>
+                              <SelectItem value="B">B级（良好）</SelectItem>
+                              <SelectItem value="C">C级（一般）</SelectItem>
+                              <SelectItem value="D">D级（较差）</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 客户状态 */}
+                    <FormField
+                      control={addForm.control}
+                      name="status"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>客户状态 *</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="请选择客户状态" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="active">活跃</SelectItem>
+                              <SelectItem value="inactive">非活跃</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* 注册日期 */}
+                    <FormField
+                      control={addForm.control}
+                      name="registrationDate"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>注册日期 *</FormLabel>
+                          <FormControl>
+                            <Input type="date" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  {/* 客户地址 */}
+                  <FormField
+                    control={addForm.control}
+                    name="address"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>客户地址</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="请输入客户地址" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 备注说明 */}
+                  <FormField
+                    control={addForm.control}
+                    name="description"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>备注说明</FormLabel>
+                        <FormControl>
+                          <Textarea {...field} placeholder="请输入备注说明" rows={3} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <DialogFooter>
+                    <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                      <X className="mr-2 h-4 w-4" />
+                      取消
+                    </Button>
+                    <Button type="submit">
+                      <Save className="mr-2 h-4 w-4" />
+                      保存
+                    </Button>
+                  </DialogFooter>
+                </form>
+              </Form>
+            </DialogContent>
+          </Dialog>
+        </div>
+
+
+
+        {/* 客户列表 */}
+        <Card className="bg-card border-border theme-transition">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-foreground">客户列表</CardTitle>
+              <div className="flex items-center space-x-2">
+                <Button variant="outline" size="sm">
+                  <Download className="mr-2 h-4 w-4" />
+                  导出
+                </Button>
+                <Button variant="outline" size="sm">
+                  <Filter className="mr-2 h-4 w-4" />
+                  高级筛选
+                </Button>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="relative flex-1 max-w-sm">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  placeholder="搜索客户..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              <Select value={typeFilter} onValueChange={setTypeFilter}>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="客户类型" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">全部类型</SelectItem>
+                  <SelectItem value="enterprise">企业</SelectItem>
+                  <SelectItem value="government">政府</SelectItem>
+                  <SelectItem value="individual">个人</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="状态" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">全部状态</SelectItem>
+                  <SelectItem value="active">活跃</SelectItem>
+                  <SelectItem value="inactive">非活跃</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>客户编码</TableHead>
+                  <TableHead>客户名称</TableHead>
+                  <TableHead>客户类型</TableHead>
+                  <TableHead>联系人</TableHead>
+                  <TableHead>联系电话</TableHead>
+                  <TableHead>信用等级</TableHead>
+                  <TableHead>累计收入</TableHead>
+                  <TableHead>最后交易</TableHead>
+                  <TableHead>状态</TableHead>
+                  <TableHead>操作</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredCustomers.map((customer) => (
+                  <TableRow key={customer.id}>
+                    <TableCell className="font-medium">{customer.code}</TableCell>
+                    <TableCell>{customer.name}</TableCell>
+                    <TableCell>
+                      <Badge variant="outline">
+                        {getTypeLabel(customer.type)}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>{customer.contact}</TableCell>
+                    <TableCell>{customer.phone}</TableCell>
+                    <TableCell>{getCreditLevelBadge(customer.creditLevel)}</TableCell>
+                    <TableCell>¥{(customer.totalRevenue || 0).toLocaleString()}</TableCell>
+                    <TableCell>{customer.lastTransactionDate || '-'}</TableCell>
+                    <TableCell>{getStatusBadge(customer.status)}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center space-x-2">
+                        <Button variant="ghost" size="sm" onClick={() => openViewDialog(customer)}>
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm" onClick={() => openEditDialog(customer)}>
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <DeleteButton
+                          onConfirm={() => handleDeleteCustomer(customer)}
+                          itemName={customer.name}
+                          variant="ghost"
+                        />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+
+        {/* 编辑对话框 */}
+        <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>编辑客户</DialogTitle>
+            </DialogHeader>
+            <Form {...editForm}>
+              <form onSubmit={editForm.handleSubmit(handleEditCustomer)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* 客户名称 */}
+                  <FormField
+                    control={editForm.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>客户名称 *</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="请输入客户名称" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 客户编码 */}
+                  <FormField
+                    control={editForm.control}
+                    name="code"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>客户编码 *</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="请输入客户编码" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 客户类型 */}
+                  <FormField
+                    control={editForm.control}
+                    name="type"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>客户类型 *</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="请选择客户类型" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="enterprise">企业</SelectItem>
+                            <SelectItem value="government">政府</SelectItem>
+                            <SelectItem value="individual">个人</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 所属行业 */}
+                  <FormField
+                    control={editForm.control}
+                    name="industry"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>所属行业</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="请输入所属行业" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 联系人 */}
+                  <FormField
+                    control={editForm.control}
+                    name="contact"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>联系人 *</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="请输入联系人姓名" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 联系电话 */}
+                  <FormField
+                    control={editForm.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>联系电话 *</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="请输入联系电话" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 邮箱地址 */}
+                  <FormField
+                    control={editForm.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>邮箱地址</FormLabel>
+                        <FormControl>
+                          <Input {...field} type="email" placeholder="请输入邮箱地址" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 信用等级 */}
+                  <FormField
+                    control={editForm.control}
+                    name="creditLevel"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>信用等级 *</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="请选择信用等级" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="A">A级（优秀）</SelectItem>
+                            <SelectItem value="B">B级（良好）</SelectItem>
+                            <SelectItem value="C">C级（一般）</SelectItem>
+                            <SelectItem value="D">D级（较差）</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 客户状态 */}
+                  <FormField
+                    control={editForm.control}
+                    name="status"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>客户状态 *</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="请选择客户状态" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="active">活跃</SelectItem>
+                            <SelectItem value="inactive">非活跃</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* 注册日期 */}
+                  <FormField
+                    control={editForm.control}
+                    name="registrationDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>注册日期 *</FormLabel>
+                        <FormControl>
+                          <Input type="date" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* 客户地址 */}
+                <FormField
+                  control={editForm.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>客户地址</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="请输入客户地址" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* 备注说明 */}
+                <FormField
+                  control={editForm.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>备注说明</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} placeholder="请输入备注说明" rows={3} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <DialogFooter>
+                  <Button type="button" variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                    <X className="mr-2 h-4 w-4" />
+                    取消
+                  </Button>
+                  <Button type="submit">
+                    <Save className="mr-2 h-4 w-4" />
+                    保存
+                  </Button>
+                </DialogFooter>
+              </form>
+            </Form>
+          </DialogContent>
+        </Dialog>
+
+        {/* 查看对话框 */}
+        <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>客户详情</DialogTitle>
+            </DialogHeader>
+            {selectedCustomer && (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">客户编码</Label>
+                    <p className="text-foreground font-medium">{selectedCustomer.code}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">客户名称</Label>
+                    <p className="text-foreground">{selectedCustomer.name}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">客户类型</Label>
+                    <div className="mt-1">
+                      <Badge variant="outline">{getTypeLabel(selectedCustomer.type)}</Badge>
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">所属行业</Label>
+                    <p className="text-foreground">{selectedCustomer.industry || '-'}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">联系人</Label>
+                    <p className="text-foreground">{selectedCustomer.contact}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">联系电话</Label>
+                    <p className="text-foreground">{selectedCustomer.phone}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">邮箱地址</Label>
+                    <p className="text-foreground">{selectedCustomer.email || '-'}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">信用等级</Label>
+                    <div className="mt-1">{getCreditLevelBadge(selectedCustomer.creditLevel)}</div>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">客户状态</Label>
+                    <div className="mt-1">{getStatusBadge(selectedCustomer.status)}</div>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">注册日期</Label>
+                    <p className="text-foreground">{selectedCustomer.registrationDate}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">最后交易日期</Label>
+                    <p className="text-foreground">{selectedCustomer.lastTransactionDate || '-'}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">累计收入</Label>
+                    <p className="text-foreground font-semibold">¥{(selectedCustomer.totalRevenue || 0).toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">创建时间</Label>
+                    <p className="text-foreground">{selectedCustomer.createdAt}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">更新时间</Label>
+                    <p className="text-foreground">{selectedCustomer.updatedAt}</p>
+                  </div>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-muted-foreground">客户地址</Label>
+                  <p className="text-foreground mt-1">{selectedCustomer.address || '-'}</p>
+                </div>
+                <div>
+                  <Label className="text-sm font-medium text-muted-foreground">备注说明</Label>
+                  <p className="text-foreground mt-1">{selectedCustomer.description || '-'}</p>
+                </div>
+              </div>
+            )}
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setIsViewDialogOpen(false)}>
+                关闭
+              </Button>
+              {selectedCustomer && (
+                <Button onClick={() => {
+                  setIsViewDialogOpen(false);
+                  openEditDialog(selectedCustomer);
+                }}>
+                  <Edit className="mr-2 h-4 w-4" />
+                  编辑
+                </Button>
+              )}
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
+  );
+};
+
+export default CustomerManagement;
