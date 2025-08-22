@@ -1,0 +1,5 @@
+/*
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Resource-Policy: cross-origin
+  Content-Security-Policy: frame-ancestors http: https:
+  X-Frame-Options: ALLOWALL

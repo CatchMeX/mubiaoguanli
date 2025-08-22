@@ -1,0 +1,12 @@
+*.sql
+*.js
+!tailwind.config.js
+!postcss.config.js
+*.cjs
+*.md
+*.mjs
+dist
+docs
+scripts
+node_modules
+.env
